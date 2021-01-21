@@ -88,5 +88,14 @@ function mertgeSort(arr) {
 }
 
 // console.log("mertgeSort ::", mertgeSort([1, 7, 45, 12, 55, 14, 99, 100]));
-console.log(mertgeSort([1, 232, 43, 24, 41, 7, 45, 14, 99, 100]));
-// console.log("store ::", store);
+console.log(mertgeSort([1, 232, 43, 24, 41, 7, 45, 14]));
+// if input is eight items long array, it splits third times.
+// if it is 32 items long, it splits 5 times
+// 32
+// 16 16
+// 8 8 8 8
+// 4 4 4 4 4 4 4 4
+// 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2
+// 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+// so this is O of N log n time complexity
+// but space complexity is O of N
