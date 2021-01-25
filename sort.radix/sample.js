@@ -42,19 +42,15 @@ function mostDigits(arr) {
 // console.log(mostDigits([2, 1321, 1]));
 function radixSort(arr, i, maxDigits) {
   if (i < maxDigits) {
-    const bucket = [];
-    const newArr = [];
+    const bucket = Array.from({ length: 10 }, () => []);
+    let newArr;
 
     for (let j = 0; j < arr.length; j++) {
-      const numIndigit = getDigit(arr[j], i);
+      const digit = getDigit(arr[j], i);
 
-      if (bucket[numIndigit]) {
-        bucket[numIndigit].push(arr[j]);
-      } else {
-        bucket[numIndigit] = [arr[j]];
-      }
+      bucket[digit].push(arr[j]);
     }
-    bucket.map((item) => newArr.push(...item));
+    newArr = [].concat(...bucket);
     i++;
     return radixSort(newArr, i, maxDigits);
   } else {
@@ -62,7 +58,7 @@ function radixSort(arr, i, maxDigits) {
   }
 }
 
-const arr = [3, 22, 33, 1, 2, 4, 9, 6, 3];
+const arr = [3, 22, 33, 1, 23231, 4, 9, 6, 3];
 
 const maxDigits = mostDigits(arr);
 console.log(radixSort(arr, 0, maxDigits));
