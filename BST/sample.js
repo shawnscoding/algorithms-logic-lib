@@ -37,6 +37,67 @@ class BinarySearchTree {
       }
     }
   }
+
+  contain(val) {
+    if (!this.root) return false;
+    let current = this.root;
+    let found = false;
+    while (current && !found) {
+      if (val > current.val) {
+        current = current.right;
+      } else if (val < current.val) {
+        current = current.left;
+      } else {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  BFS() {
+    let node = this.root;
+    if (!node) return;
+    const queue = [node];
+    const visited = [];
+    while (queue.length > 0) {
+      node = queue.shift();
+      visited.push(node.val);
+      if (node.left) {
+        queue.push(node.left);
+      }
+      if (node.right) {
+        queue.push(node.right);
+      }
+    }
+    return visited;
+  }
+
+  DFP() {
+    const DFPHelper = (current, visited) => {
+      if (!current) return visited;
+      visited.push(current.val);
+      if (current.left) DFPHelper(current.left, visited);
+      if (current.right) DFPHelper(current.right, visited);
+    };
+
+    let visited = [];
+    let current = this.root;
+    return DFPHelper(current, visited);
+  }
 }
 
+//    5
+//  2   10
+// 3   6   20
+
 let tree = new BinarySearchTree();
+tree.insert(5);
+tree.insert(2);
+tree.insert(10);
+tree.insert(12);
+tree.insert(15);
+tree.insert(1);
+tree.insert(6);
+tree.insert(20);
+// console.log("tree   ::", tree);
+console.log(tree.DFP());
