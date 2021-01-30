@@ -70,34 +70,67 @@ class BinarySearchTree {
       }
     }
     return visited;
+    // if tree is wide, space complexity is bad since queue has to store many branches
+    // but if tree is not wide but deep, BFS is efficient
   }
 
-  DFP() {
-    const DFPHelper = (current, visited) => {
-      if (!current) return visited;
-      visited.push(current.val);
-      if (current.left) DFPHelper(current.left, visited);
-      if (current.right) DFPHelper(current.right, visited);
-    };
-
+  DFPPreOrder() {
     let visited = [];
     let current = this.root;
-    return DFPHelper(current, visited);
+    const traverse = (current) => {
+      visited.push(current.val);
+      if (current.left) traverse(current.left);
+      if (current.right) traverse(current.right);
+    };
+    traverse(current);
+    // this returns array which can be used to restructure the tree later on
+    return visited;
+  }
+
+  DFPPostOrder() {
+    let visited = [];
+    let current = this.root;
+    const traverse = (current) => {
+      if (current.left) traverse(current.left);
+      if (current.right) traverse(current.right);
+      visited.push(current.val);
+    };
+    traverse(current);
+    return visited;
+  }
+
+  DFPInOrder() {
+    // traverse first
+    // if there is left  call helper fn and store
+    // if there is right, call helper fn but store
+    let visited = [];
+    let current = this.root;
+    const traverse = (current) => {
+      if (current.left) traverse(current.left);
+      visited.push(current.val);
+      if (current.right) traverse(current.right);
+    };
+
+    traverse(current);
+
+    // this method returns arrays in order
+    return visited;
   }
 }
 
-//    5
-//  2   10
-// 3   6   20
+// [3, ]
+//    10
+//  6   15
+// 3   8   20
 
 let tree = new BinarySearchTree();
-tree.insert(5);
-tree.insert(2);
 tree.insert(10);
-tree.insert(12);
-tree.insert(15);
-tree.insert(1);
 tree.insert(6);
+tree.insert(3);
+tree.insert(8);
+tree.insert(15);
 tree.insert(20);
-// console.log("tree   ::", tree);
-console.log(tree.DFP());
+console.log(tree.BFS());
+console.log(tree.DFPPreOrder());
+console.log(tree.DFPPostOrder());
+console.log(tree.DFPInOrder());
