@@ -10,3 +10,10 @@ Searching - O(log n)
 Insertion - O(log n)
 Removal - O(log n)
 Searching - O(N)
+
+**Hash table**
+Insert - O(1)
+Delete - O(1)
+Access - O(1)
+SearchWithKey - O(1)
+SearchWithValue - O(N)
