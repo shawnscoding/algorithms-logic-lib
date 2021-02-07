@@ -157,14 +157,32 @@ class AdjacencyList {
     }
     return result;
   }
-}
 
-// [a]
-// [b c]
-// [c d]
-// [e ]
-// [f]
-//
+  BFS(start) {
+    // DFSI using array as stack
+    const queue = [start];
+    const result = [];
+    const visited = {};
+    let currentVertex;
+    // queue [ a ] result [ a ]
+    // queue [ b, c ] result [ a, b ]
+    // queue [ c, d ] result [ a, b, c ]
+
+    visited[start] = true;
+    while (queue.length) {
+      currentVertex = queue.shift();
+      result.push(currentVertex);
+
+      this.adjacencyList[currentVertex].forEach((neighbor) => {
+        if (!visited[neighbor]) {
+          visited[neighbor] = true;
+          queue.push(neighbor);
+        }
+      });
+    }
+    return result;
+  }
+}
 
 let list = new AdjacencyList();
 list.addVertex("a");
@@ -180,6 +198,7 @@ list.addEdge("c", "e");
 list.addEdge("d", "e");
 list.addEdge("d", "f");
 console.log(list.addEdge("e", "f"));
-console.log(list.DFSI("a"));
+console.log(list.depthFirstIterative("a"));
+console.log(list.BFS("a"));
 // list.removeVertex("america");
 // console.log(list.DFS("korea"));
