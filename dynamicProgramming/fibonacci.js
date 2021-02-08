@@ -48,3 +48,8 @@ const fibBottomUp = (n) => {
   return memoArr[1];
 };
 console.log(fibBottomUp(50));
+
+
+
+// 2 4 8 16 32
+// 1 2 3 4 5
