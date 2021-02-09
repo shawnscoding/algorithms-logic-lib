@@ -3,7 +3,7 @@ function SimpleSymbols(str) {
   if (!str.length) return false;
   let validated = true;
   for (let i = 0; i < str.length; i++) {
-    let isStr = str[i].match(/[a-zA-Z]+/g);
+    let isStr = str[i].match(/[a-zA-Z]/);
 
     if (isStr) {
       if (str[i - 1] === "+" && str[i + 1] === "+") {
