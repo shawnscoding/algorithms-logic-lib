@@ -82,8 +82,6 @@ function mertgeSort(arr) {
   const mid = Math.floor(arr.length / 2);
   const left = arr.slice(0, mid);
   const right = arr.slice(mid);
-  //   store.push(left);
-  //   store.push(right);
   return merge(mertgeSort(left), mertgeSort(right));
 }
 

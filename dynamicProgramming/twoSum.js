@@ -27,7 +27,6 @@ function TwoSum(arr) {
   if (output.length < 1) {
     return -1;
   }
-  return output.join(" ");
 }
 
 console.log(TwoSum([7, 3, 5, 2, -4, 8, 11]));

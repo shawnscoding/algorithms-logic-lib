@@ -14,23 +14,23 @@
 
 // time complexity :: O(n)
 // memoized solution
-// const memo = [];
-// const fib = (n, _memo) => {
-//   let result;
+const memo = [];
+const fib = (n, _memo) => {
+  let result;
 
-//   if (_memo[n]) {
-//     return _memo[n];
-//   }
-//   if (n === 1 || n === 2) {
-//     result = 1;
-//   } else {
-//     result = fib(n - 1, _memo) + fib(n - 2, _memo);
-//     _memo[n] = result;
-//   }
-//   return result;
-// };
+  if (_memo[n]) {
+    return _memo[n];
+  }
+  if (n === 1 || n === 2) {
+    result = 1;
+  } else {
+    result = fib(n - 1, _memo) + fib(n - 2, _memo);
+    _memo[n] = result;
+  }
+  return result;
+};
 
-// console.log(fib(50, memo));
+console.log(fib(50, memo));
 
 // bottom-up approach
 // time complexity :: O(n)
@@ -48,8 +48,6 @@ const fibBottomUp = (n) => {
   return memoArr[1];
 };
 console.log(fibBottomUp(50));
-
-
 
 // 2 4 8 16 32
 // 1 2 3 4 5
