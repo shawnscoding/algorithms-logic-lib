@@ -10,20 +10,20 @@
 // Tags
 // string manipulationsearchingencoding
 function BasicRomanNumerals(str) {
-  var roman = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
-  var number = 0;
-
-  for (let i = 0; i <= str.length - 1; i++) {
-    if (roman[str[i + 1]] > roman[str[i]]) {
-      number += roman[str[i + 1]] - roman[str[i]];
-      i += 1;
+  let roman = { I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000 };
+  let result = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (roman[str[i]] < roman[str[i + 1]]) {
+      result += roman[str[i + 1]] - roman[str[i]];
+      i++;
     } else {
-      number += roman[str[i]];
+      result += roman[str[i]];
     }
+    console.log("result ::", result);
   }
-
-  return number;
+  return result;
 }
 
 // keep this function call here
-console.log(BasicRomanNumerals(readline()));
+console.log(BasicRomanNumerals("XLI"));
+// shold return 19

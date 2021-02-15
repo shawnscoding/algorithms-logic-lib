@@ -1,91 +1,83 @@
 function CorrectPath(str) {
-  var x = 0, //start x coord
-    y = 0, //start y coord
-    missingLetters = [],
-    unknowns = str.match(/\W/g);
+  var x = 0;
+  var y = 0;
+  var letters = [];
+  var qs = str.match(/[^\w]/g);
 
-  //tallies current number of x and y movements
-  for (var i = 0; i < str.length; i++) {
-    switch (str[i]) {
-      case "d":
-        y += 1;
-        break;
-      case "u":
-        y -= 1;
-        break;
-      case "l":
-        x -= 1;
-        break;
-      case "r":
-        x += 1;
-        break;
-    }
+  str = str.split("");
+
+  for (let i = 0; i < str.length; i++) {
+    str[i] === "r" ? (y = y + 1) : null;
+    str[i] === "l" ? (y = y - 1) : null;
+    str[i] === "u" ? (x = x - 1) : null;
+    str[i] === "d" ? (x = x + 1) : null;
   }
 
-  function addX() {
+  function addXletters() {
     while (x !== 4) {
-      if (x > 4) {
-        x--;
-        missingLetters.push("l");
+      if (x < 4) {
+        x += 1;
+        letters.push("d");
       } else {
-        x++;
-        missingLetters.push("r");
+        x -= 1;
+        letters.push("u");
       }
     }
   }
-
-  function addY() {
+  function addYletters() {
     while (y !== 4) {
-      if (y > 4) {
-        y--;
-        missingLetters.push("u");
+      if (y < 4) {
+        y += 1;
+        letters.push("r");
       } else {
-        y++;
-        missingLetters.push("d");
+        y -= 1;
+        letters.push("l");
       }
     }
   }
 
-  if (x > y) {
-    addX();
-    addY();
+  if (y > x) {
+    addYletters();
+    addXletters();
   }
-  //
-  if (y >= x) {
-    addY();
-    addX();
+  if (x >= y) {
+    addXletters();
+    addYletters();
   }
 
-  while (missingLetters.length < unknowns.length) {
-    var pos = missingLetters.length - 1;
-    if (missingLetters[pos] === "r") {
-      x += 1;
-      missingLetters.push("r");
-      addX();
-    }
-    if (missingLetters[pos] === "l") {
-      x -= 1;
-      missingLetters.push("l");
-      addX();
-    }
-    if (missingLetters[pos] === "d") {
+  while (letters.length < qs.length) {
+    if (letters[letters.length - 1] === "r") {
       y += 1;
-      missingLetters.push("d");
-      addY();
+      letters.push("r");
+      addYletters();
     }
-    if (missingLetters[pos] === "u") {
+    if (letters[letters.length - 1] === "l") {
       y -= 1;
-      missingLetters.push("u");
-      addY();
+      letters.push("l");
+      addYletters();
+    }
+    if (letters[letters.length - 1] === "d") {
+      x += 1;
+      letters.push("d");
+      addXletters();
+    }
+    if (letters[letters.length - 1] === "u") {
+      x -= 1;
+      letters.push("u");
+      addXletters();
     }
   }
 
-  var newStr = str.split("");
-  for (var j = 0; j < str.length; j++) {
-    newStr[j] === "?" ? (newStr[j] = missingLetters.shift()) : "null";
+  for (let i = 0; i < str.length; i++) {
+    str[i] === "?" ? (str[i] = letters.shift()) : null;
   }
-  return newStr.join("");
+
+  return str.join("");
 }
 
 // keep this function call here
-console.log(CorrectPath("drdr??rrddd?"));
+CorrectPath(readline());
+
+["[5, 9]", "[1, 2, 6, 7]"];
+2, 6;
+// 16
