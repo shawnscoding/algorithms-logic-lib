@@ -44,3 +44,4 @@ function AlphabetSearching(str) {
 
 // keep this function call here
 AlphabetSearching(readline());
+1440 - 740;
