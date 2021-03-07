@@ -27,6 +27,18 @@ module.exports.englishChardic = {
   z: false,
 };
 
-module.exports =  capitalize(word) {
+module.exports.capitalize = (word) => {
   return word[0].toUpperCase() + word.slice(1);
-}
+};
+
+module.exports.spliceString = (str, index, count, add) => {
+  // We cannot pass negative indexes directly to the 2nd slicing operation.
+  if (index < 0) {
+    index = str.length + index;
+    if (index < 0) {
+      index = 0;
+    }
+  }
+
+  return str.slice(0, index) + (add || "") + str.slice(index + count);
+};

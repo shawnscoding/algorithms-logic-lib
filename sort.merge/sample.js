@@ -1,45 +1,3 @@
-// function merge(arr1, arr2) {
-//   let i = 0;
-//   let j = 0;
-//   const result = [];
-//   // use while
-//   if (arr1.length > arr2.length) {
-//     while (i < arr2.length) {
-//       if (arr2[i] < arr1[j]) {
-//         result.push(arr2[i]);
-//         i++;
-//       } else {
-//         result.push(arr1[j]);
-//         j++;
-//       }
-//     }
-//     if (arr1.length - 1 >= j) {
-//       while (j < arr1.length) {
-//         result.push(arr1[j]);
-//         j++;
-//       }
-//     }
-//   } else {
-//     while (i < arr1.length) {
-//       if (arr1[i] < arr2[j]) {
-//         result.push(arr1[i]);
-//         i++;
-//       } else {
-//         result.push(arr2[j]);
-//         j++;
-//       }
-//     }
-//     if (arr2.length - 1 >= j) {
-//       while (j < arr2.length) {
-//         result.push(arr2[j]);
-//         j++;
-//       }
-//     }
-//   }
-
-//   return result;
-// }
-
 function merge(arr1, arr2) {
   let i = 0;
   let j = 0;
@@ -65,8 +23,6 @@ function merge(arr1, arr2) {
     j++;
   }
 
-  //   console.log("i j ::", i, j);
-
   return result;
 }
 
@@ -85,7 +41,6 @@ function mertgeSort(arr) {
   return merge(mertgeSort(left), mertgeSort(right));
 }
 
-// console.log("mertgeSort ::", mertgeSort([1, 7, 45, 12, 55, 14, 99, 100]));
 console.log(mertgeSort([1, 232, 43, 24, 41, 7, 45, 14]));
 // if input is eight items long array, it splits third times.
 // if it is 32 items long, it splits 5 times
