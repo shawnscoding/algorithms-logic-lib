@@ -35,24 +35,6 @@ class BST {
     }
     return this.root;
   }
-
-  getMin() {
-    let current = this.root;
-
-    while (current.left) {
-      current = current.left;
-    }
-    return current;
-  }
-
-  getMax() {
-    let current = this.root;
-
-    while (current.right) {
-      current = current.right;
-    }
-    return current;
-  }
 }
 
 const bst = new BST();
@@ -64,5 +46,3 @@ bst.addNode(4);
 bst.addNode(2);
 bst.addNode(1);
 console.log(bst);
-console.log(bst.getMin());
-console.log(bst.getMax());
