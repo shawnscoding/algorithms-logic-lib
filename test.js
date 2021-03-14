@@ -104,6 +104,23 @@ class BST {
     this.root = removeNode(this.root, data);
     return this;
   }
+
+  BFS() {
+    // search left first and right
+    // push left and right into queue and shift to visted
+    let node = this.root;
+    const queue = [node];
+    const visited = [];
+    while (queue.length) {
+      let node = queue.shift();
+      visited.push(node.data);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return visited;
+    // visited [ 3,2, 7, 1, 4, 10, 11 ]
+  }
 }
 
 let bst = new BST();
@@ -114,9 +131,10 @@ bst.addNode(10);
 bst.addNode(4);
 bst.addNode(2);
 bst.addNode(1);
-bst.addNode(8);
+bst.addNode(11);
 // console.log(bst);
 // console.log(bst.getMin());
 // console.log(bst.getMax());
 // console.log(bst.contains(2));
-console.log(bst.rmNode(7));
+// console.log(bst.rmNode(7));
+console.log(bst.BFS());
