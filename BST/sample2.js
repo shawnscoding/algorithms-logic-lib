@@ -53,6 +53,14 @@ class BST {
     }
     return current;
   }
+
+  contains(node) {
+    let current = this.root;
+    
+    while(true) {
+      if(node < current.data)
+    }
+  }
 }
 
 const bst = new BST();
