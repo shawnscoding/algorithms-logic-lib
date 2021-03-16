@@ -1,6 +1,6 @@
 class Node {
-  constructor(data) {
-    this.data = data;
+  constructor(val) {
+    this.val = val;
     this.left = null;
     this.right = null;
   }
@@ -11,27 +11,26 @@ class BST {
     this.root = null;
   }
 
-  _findNode(current, node) {
-    if (current.data === node.data) return null;
-    if (current.data > node.data) {
-      if (!current.left) {
-        current.left = node;
-        return;
-      } else this._findNode(current.left, node);
-    } else {
-      if (!current.right) {
-        current.right = node;
-        return;
-      } else this._findNode(current.right, node);
+  addNode(val) {
+    function _findNode(current, node) {
+      if (current.val === node.val) return null;
+      if (current.val > node.val) {
+        if (!current.left) {
+          current.left = node;
+          return;
+        } else _findNode(current.left, node);
+      } else {
+        if (!current.right) {
+          current.right = node;
+          return;
+        } else _findNode(current.right, node);
+      }
     }
-  }
-
-  addNode(data) {
-    const node = new Node(data);
+    const node = new Node(val);
     if (!this.root) {
       this.root = node;
     } else {
-      this._findNode(this.root, node);
+      _findNode(this.root, node);
     }
     return this.root;
   }
@@ -56,14 +55,75 @@ class BST {
 
   contains(node) {
     let current = this.root;
-    
-    while(true) {
-      if(node < current.data)
+
+    while (true) {
+      if (node < current.val) {
+        current = current.left;
+      } else if (node > current.val) {
+        current = current.right;
+      } else if (node === current.val) {
+        return current;
+      } else {
+        return null;
+      }
     }
+  }
+
+  rmNode(val) {
+    const removeNode = (node, val) => {
+      //
+      if (!node) return null;
+      if (node.val === val) {
+        // no children
+        if (!node.left && !node.right) return null;
+        // if no left
+        if (!node.left) return node.right;
+        if (!node.right) return node.left;
+
+        // store node to temp
+        // go to right and find most left
+        let temp = node.right;
+        while (temp.left !== null) {
+          temp = temp.left;
+        }
+        // now temp is most left. switch val!
+        node.val = temp.val;
+        // remove most left node
+        node.right = removeNode(node.right, temp.val);
+        return node;
+      } else if (node.val > val) {
+        // means less
+        node.left = removeNode(node.left, val);
+        return node;
+      } else {
+        node.right = removeNode(node.right, val);
+        return node;
+      }
+    };
+
+    this.root = removeNode(this.root, val);
+    return this;
+  }
+
+  BFS() {
+    // search left first and right
+    // push left and right into queue and shift to visted
+    let node = this.root;
+    const queue = [node];
+    const visited = [];
+    while (queue.length) {
+      let node = queue.shift();
+      visited.push(node.val);
+      if (node.left) queue.push(node.left);
+      if (node.right) queue.push(node.right);
+    }
+
+    return visited;
+    // visited [ 3,2, 7, 1, 4, 10, 11 ]
   }
 }
 
-const bst = new BST();
+let bst = new BST();
 
 bst.addNode(3);
 bst.addNode(7);
@@ -71,6 +131,10 @@ bst.addNode(10);
 bst.addNode(4);
 bst.addNode(2);
 bst.addNode(1);
-console.log(bst);
-console.log(bst.getMin());
-console.log(bst.getMax());
+bst.addNode(11);
+// console.log(bst);
+// console.log(bst.getMin());
+// console.log(bst.getMax());
+// console.log(bst.contains(2));
+// console.log(bst.rmNode(7));
+console.log(bst.BFS());
