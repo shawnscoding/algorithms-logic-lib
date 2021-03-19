@@ -15,31 +15,25 @@ class MaxBinaryHeap {
       this.root.push(val);
       return;
     }
-    this.root.push(val);
     const compareAndSwap = (_val, idx) => {
-      if (idx < 0) return this.root;
       let parentIdx = Math.floor((idx - 1) / 2);
-      let parent = this.root[parentIdx];
-      if (parent > _val) return this.root;
-      else {
+      if (this.root[parentIdx] > _val) {
+        this.root.push(_val);
+        return this.root;
+      } else {
         // swap
+        let temp = this.root[parentIdx];
         this.root[parentIdx] = _val;
-        this.root[idx] = parent;
+        _val = temp;
         compareAndSwap(_val, parentIdx);
       }
     };
-    return compareAndSwap(val, this.root.length - 1);
+    return compareAndSwap(val, this.root.length);
   }
 }
 let heap = new MaxBinaryHeap();
 heap.insert(4);
-heap.insert(11);
-heap.insert(2);
-heap.insert(1);
+heap.insert(30);
 heap.insert(3);
-heap.insert(5);
-heap.insert(0);
-heap.insert(7);
-heap.insert(6);
-heap.insert(72);
+heap.insert(20);
 console.log(heap);

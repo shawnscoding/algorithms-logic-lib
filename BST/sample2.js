@@ -121,20 +121,51 @@ class BST {
     return visited;
     // visited [ 3,2, 7, 1, 4, 10, 11 ]
   }
+
+  LCA(a, b) {
+    // Lowest Common Ancestor
+    let min = Math.min(a, b);
+    let max = Math.max(a, b);
+    function func(current) {
+      let result;
+      if (current.val === max) {
+        result = max;
+      } else if (current.val === min) {
+        result = min;
+      } else if (current.val > min && current.val < max) {
+        // means this is parent of children
+        result = current;
+      } else if (current.val > min && current.val > max) {
+        // if current val is more than both, need to go left down, get small
+        result = func(current.left);
+      } else if (current.val < min && current.val < max) {
+        // if current val is less than both, need to go right down, get big
+
+        result = func(current.right);
+      }
+      return result;
+    }
+    return func(this.root);
+  }
 }
 
 let bst = new BST();
 
-bst.addNode(3);
-bst.addNode(7);
 bst.addNode(10);
-bst.addNode(4);
-bst.addNode(2);
+bst.addNode(5);
 bst.addNode(1);
-bst.addNode(11);
+bst.addNode(7);
+bst.addNode(40);
+bst.addNode(50);
+// [10, 5, 1, 7, 40, 50]
+//     10
+//   5    40
+// 1   7     50
 // console.log(bst);
 // console.log(bst.getMin());
 // console.log(bst.getMax());
 // console.log(bst.contains(2));
 // console.log(bst.rmNode(7));
-console.log(bst.BFS());
+console.log(bst.LCA(1, 7));
+// console.log(bst.BFS());
+// console.log(bst.BFS());

@@ -5,6 +5,10 @@ class Node {
   }
 }
 
+// Binary Heaps are used to implement Priority Queue
+// rule of BH
+// in max binary heap parent node is always greater than its child nodes
+// A binary heap is as compact as possible.
 class PriorityQueue {
   constructor() {
     this.queue = [];
