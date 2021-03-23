@@ -1,37 +1,3 @@
-// function isPowerOfTwo(v) {
-//   return v && !(v & (v - 1));
-// }
-
-// function twoTwo(a) {
-//   /*
-//    * Write your code here.
-//    */
-//   // use nested for loops
-//   // test if num is n power of 2
-//   // console.log(a)
-
-//   let numStr = a;
-//   let count = 0;
-//   for (let j = 0; j < numStr.length; j++) {
-//     let result = numStr[j];
-//     if (isPowerOfTwo(Number(result))) {
-//       console.log("d", result);
-//       count++;
-//     }
-//     for (let k = j + 1; k < numStr.length; k++) {
-//       result += numStr[k];
-//       if (result[0] !== "0" && isPowerOfTwo(Number(result))) {
-//         console.log(result);
-
-//         count++;
-//       }
-//     }
-//   }
-//   return count;
-// }
-
-// twoTwo("023223");
-
 class Node {
   constructor() {
     this.keys = new Map();
