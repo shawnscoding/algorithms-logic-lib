@@ -1,45 +1,57 @@
-// Binary Heaps are used to implement Priority Queue
-// rule of BH
-// in max binary heap parent node is always greater than its child nodes
-// A binary heap is as compact as possible.
-class MaxBinaryHeap {
-  constructor() {
-    this.root = [];
+var romanToInt = function (s) {
+  //     1 5 10 50 100 500 1000
+
+  // if not I add corrosponding int
+  // if i + 1 is bigger than or equal to i, subtract i from i + 1
+
+  const dics = {
+    I: 1,
+    V: 5,
+    X: 10,
+    L: 50,
+    C: 100,
+    D: 500,
+    M: 1000,
+  };
+
+  let result = 0;
+  for (let i = 0; i < s.length; i++) {
+    let char = s[i];
+    let next = s[i + 1];
+
+    if (dics[char] < dics[next]) {
+      // console.log("called");
+      result += dics[next] - dics[char];
+      i++;
+    } else {
+      result += dics[char];
+    }
   }
 
-  insert(val) {
-    //   get parent idx
-    // compare if child is greater, swap
-    // keep going until child is smaller than its parent
-    if (!this.root.length) {
-      this.root.push(val);
-      return;
-    }
-    this.root.push(val);
-    const compareAndSwap = (_val, idx) => {
-      if (idx < 0) return this.root;
-      let parentIdx = Math.floor((idx - 1) / 2);
-      let parent = this.root[parentIdx];
-      if (parent > _val) return this.root;
-      else {
-        // swap
-        this.root[parentIdx] = _val;
-        this.root[idx] = parent;
-        compareAndSwap(_val, parentIdx);
-      }
-    };
-    return compareAndSwap(val, this.root.length - 1);
-  }
-}
-let heap = new MaxBinaryHeap();
-heap.insert(4);
-heap.insert(11);
-heap.insert(2);
-heap.insert(1);
-heap.insert(3);
-heap.insert(5);
-heap.insert(0);
-heap.insert(7);
-heap.insert(6);
-heap.insert(72);
-console.log(heap);
+  return result;
+};
+
+console.log(romanToInt("III"));
+
+// const legend = {
+//   I:1,
+//   V:5,
+//   X:10,
+//   L:50,
+//   C:100,
+//   D:500,
+//   M:1000
+// };
+// let total = 0;
+
+// for (let i = 0; i < s.length; i++) {
+//   if (legend[s[i]] < legend[s[i+1]]) {
+//     total += legend[s[i+1]] - legend[s[i]];
+//     i++;
+//   } else {
+//     total += legend[s[i]];
+//   }
+// }
+
+// return total;
+// };
