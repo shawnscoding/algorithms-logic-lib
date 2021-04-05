@@ -1,22 +1,28 @@
-var addDigits = function (num) {
-  //     if less than 10, return result
-  //     make string, slice, and add
+// var addToArrayForm = function (A, K) {
+//   let i = A.length - 1;
+//   let carry = 0;
+//   while (K || carry) {
+//     const d = K % 10;
+//     if (i >= 0) {
+//       A[i] = A[i] + d + carry;
+//       carry = A[i] > 9 ? 1 : 0;
+//       A[i] = A[i] % 10;
+//       i--;
+//     } else {
+//       const p = d + carry;
+//       carry = p > 9 ? 1 : 0;
+//       A.unshift(p % 10);
+//     }
+//     K = Math.trunc(K / 10);
+//   }
+//   return A;
+// };
 
-  let result = num;
-  while (true) {
-    console.log("called");
-    if (result < 10) {
-      return result;
-    } else {
-      let str = result.toString();
-      let sum = 0;
-      for (let i = 0; i < str.length; i++) {
-        sum += Number(str[i]);
-      }
-
-      result = sum;
-    }
+var addToArrayForm = function (num1, num2) {
+  i = 0;
+  while (i) {
+    console.log("call");
   }
 };
 
-console.log(addDigits(38));
+console.log(addToArrayForm([2, 1, 5], 806));
