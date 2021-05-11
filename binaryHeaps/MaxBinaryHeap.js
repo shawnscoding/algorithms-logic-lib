@@ -32,7 +32,7 @@ class MaxBinaryHeaps {
     // swap first node with last node
     //  pop last node
     // swap first node with larger node until there no children node left unless firstnode is bigger than both
-    const heaps = this.values;
+    let heaps = this.values;
     let end = heaps.pop();
     if (!heaps.length) {
       heaps.pop();
@@ -113,3 +113,47 @@ console.log(heaps.extractMac());
 console.log(heaps.extractMac());
 console.log(heaps.extractMac());
 console.log(heaps.extractMac());
+let updateMatrix = (matrix) => {
+  let res = new Array(matrix.length);
+  for (let i = 0; i < res.length; i++) {
+    res[i] = new Array(matrix[0].length).fill(0);
+  }
+
+  let DFS = (x, y) => {
+    //     if 0, return 0
+    if (
+      x < 0 ||
+      y < 0 ||
+      x >= matrix.length ||
+      y >= matrix[0].length ||
+      matrix[x][y] === Infinity
+    )
+      return Number.MAX_SAFE_INTEGER;
+    if (matrix[x][y] === 0) return 0;
+
+    //      if 1 and there is 0 around it return 1
+    if (x > 0 && matrix[x - 1][y] === 0) return 1;
+    if (y < matrix[0].length - 1 && matrix[x][y + 1] === 0) return 1;
+    if (x < matrix.length - 1 && matrix[x + 1][y] === 0) return 1;
+    if (y > 0 && matrix[x][y - 1] === 0) return 1;
+
+    //     otherwise call DFS
+    let temp = matrix[x][y];
+    matrix[x][y] = Infinity;
+    let top = DFS(x--, y);
+    let down = DFS(x++, y);
+    let left = DFS(x, y--);
+    let right = DFS(x, y++);
+    matrix[x][y] = temp;
+    let min = Math.min(top, down, left, right) + 1;
+    return min;
+  };
+
+  for (let i = 0; i < res.length; i++) {
+    for (let j = 0; j < res[0].length; j++) {
+      res[i][j] = DFS(i, j);
+    }
+  }
+
+  return res;
+};
