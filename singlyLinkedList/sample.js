@@ -167,10 +167,11 @@ instance1.push(0);
 instance1.push(1);
 instance1.push(2);
 instance1.push(3);
-instance1.reverse();
+// instance1.reverse();
 
-console.log("instance1 ::", instance1);
-console.log("instance1 ::", instance1.print());
+console.log(instance1.insert(1, 10));
+console.log(instance1);
+
 // console.log("instance1 ::", instance1.head.next)
 
 // set(i, val) {
