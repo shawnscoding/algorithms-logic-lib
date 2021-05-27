@@ -171,35 +171,3 @@ instance1.push(3);
 
 console.log(instance1.insert(1, 10));
 console.log(instance1);
-
-// console.log("instance1 ::", instance1.head.next)
-
-// set(i, val) {
-//     let foundNode =  this.get(i)
-//     let copy  = foundNode
-//     if(foundNode){
-//         let newNode = new Node(val)
-//         newNode.next = foundNode.next
-//         foundNode = newNode
-//         // !important note
-//         // this will make foundNode lose the address
-//         // of the node class to update
-//         // to keep the address and update
-//         // have to update just val in the address
-//         console.log('test :: ', copy === foundNode)
-//         return true
-//     }
-//    return false;
-// }
-
-// insertion - O(1) constant time
-// removal - O(1) or O(N). if shift, O(1). if pop, O(N)
-// search O(N)
-// Access O(N)
-
-// whereas array
-// insertion - O(N) or O(1)
-// removal - O(1) or O(N). if shift, O(N). if pop, O(1)
-// but overall, worse than ssl
-// search O(1)
-// Access O(1)
